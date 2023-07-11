@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+
+
 
 const BookingForm = ({ roomRate }) => {
   const [name, setName] = useState('');
@@ -8,6 +10,11 @@ const BookingForm = ({ roomRate }) => {
   const [checkInDate, setCheckInDate] = useState('');
   const [checkOutDate, setCheckOutDate] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
+
+const a = location.state;
+
+
   const handleNameChange = (event) => {
     setName(event.target.value);
   };
@@ -27,30 +34,26 @@ const BookingForm = ({ roomRate }) => {
   const handleCheckOutDateChange = (event) => {
     setCheckOutDate(event.target.value);
   };
-
+  const calculateTotalNights = () => {
+    const arrival = new Date(checkInDate);
+    const departure = new Date(checkOutDate);
+    const totalNights = Math.ceil((departure - arrival) / (1000 * 60 * 60 * 24));
+    return totalNights;
+  };
   const calculateTotalPrice = () => {
-   
-    const totalPrice = totalPrice;
-    const tax = totalPrice * 0.12;
-
-    return { totalPrice, tax };
+    const pricePerNight = a.price;
+    const totalNights = calculateTotalNights();
+    return pricePerNight * totalNights;
   };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-   
-    navigate ("/Booked");
-
-    // Calculate the total price and tax
-    const { totalPrice, tax } = calculateTotalPrice();
-
-    // Display the total price and tax
-    console.log('Total Price:', totalPrice);
-    console.log('Tax:', tax);
-
-    // Handle form submission (e.g., send the booking details to the server)
-  };
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const totalPrice = calculateTotalPrice();
+    const totalNights = calculateTotalNights();
+    navigate ("/Booked", {state: {
+        totalNights: totalNights,
+        totalPrice: totalPrice,
+    }});
+  } 
   return (
     <div className="booking-form">
       <h2>Booking Form</h2>

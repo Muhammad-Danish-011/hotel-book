@@ -21,8 +21,6 @@ const SearchForm = () => {
 
   const handleSearch = () => {
     navigate ("/HotelPage");
-   
-    console.log('Search criteria:', { city, experienceLevel, poolRequired });
   };
 
   return (

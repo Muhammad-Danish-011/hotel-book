@@ -5,9 +5,10 @@ import Global from '../global component/Global';
 const HotelList = ({ hotels }) => {
 
     const navigate = useNavigate();
-  const handleBookNow = (hotelName) => {
-    console.log(`Book Now clicked for ${hotelName}`);
-    navigate ("/BookingForm");
+
+  const handleBookNow = (hotel) => {
+    console.log(`Book Now clicked for ${hotel}`);
+    navigate ("/BookingForm", {state:hotel});
   };
 
   return (
@@ -25,7 +26,7 @@ const HotelList = ({ hotels }) => {
             <p>Pool: {hotel.hasPool ? 'Yes' : 'No'}</p>
             <p>Experience Level: {hotel.experienceLevel}</p>
             <p>Price per night: {hotel.price}</p>
-            <button onClick={() => handleBookNow(hotel.name)}>Book Now</button>
+            <button onClick={() => handleBookNow(hotel)}>Book Now</button>
           </div>
         </div>
       ))}

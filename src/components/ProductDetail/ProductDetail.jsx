@@ -1,8 +1,8 @@
 import React from 'react';
-import BookingForm from '../Booking Form/BookingForm';
+
 import Global from '../global component/Global';
-const ProductDetail = ({  match  }) => {
-    const productId = match.params.id;
+const ProductDetail = ({ productId }) => {
+  
   return (
     
     <div className="product-detail">
@@ -10,7 +10,7 @@ const ProductDetail = ({  match  }) => {
       <h2>Product Detail</h2>
       <p></p>
       
-      <BookingForm roomRate ={""} />
+
     </div>
   );
 };
