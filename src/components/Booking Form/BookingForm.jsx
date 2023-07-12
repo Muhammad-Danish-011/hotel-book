@@ -47,13 +47,38 @@ const a = location.state;
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const totalPrice = calculateTotalPrice();
-    const totalNights = calculateTotalNights();
-    navigate ("/Booked", {state: {
+
+    // Create a payload object with the data to be inserted
+    const payload = {
+      name: name,
+      address: address,
+      email: email,
+      checkInDate: checkInDate,
+      checkOutDate: checkOutDate
+    
+    };
+
+    fetch('http://localhost:8082/Bookings/add', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    })
+      .then(response => {
+      
+        console.log('Data inserted successfully');
+      })
+      .catch(error => {
+        console.error('Error inserting data:', error);
+      });
+      const totalPrice = calculateTotalPrice();
+      const totalNights = calculateTotalNights();
+      navigate("/booked", {state: {
         totalNights: totalNights,
         totalPrice: totalPrice,
     }});
-  } 
+  };
   return (
     <div className="booking-form">
       <h2>Booking Form</h2>

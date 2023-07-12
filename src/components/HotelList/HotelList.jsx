@@ -1,15 +1,26 @@
 import React from 'react';
 import { useNavigate ,Link} from 'react-router-dom';
 import Global from '../global component/Global';
-
-const HotelList = ({ hotels }) => {
+import { useEffect, useState } from 'react';  
+const HotelList = (hotel) => {
 
     const navigate = useNavigate();
 
   const handleBookNow = (hotel) => {
     console.log(`Book Now clicked for ${hotel}`);
     navigate ("/BookingForm", {state:hotel});
+  
   };
+  const [hotels, setHotels] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:8080/hotels/all') 
+      .then(response => response.json())
+      .then(data => setHotels(data))
+      .catch(error => console.log(error));
+  }, []);
+  
+
 
   return (
     <div className="hotel-list">
@@ -35,5 +46,6 @@ const HotelList = ({ hotels }) => {
     </div>
   );
 };
+
 
 export default HotelList;

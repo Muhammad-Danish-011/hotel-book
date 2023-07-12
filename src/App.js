@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter,  Route, Routes } from 'react-router-dom';
 import HotelList from '../src/components/HotelList/HotelList';
 import SearchForm from '../src/components/SearchForm/SearchForm';
-import HotelPage from './components/HotelPage/HotelPage';
 import Booked from './components/Booked/Booked';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import BookingForm from './components/Booking Form/BookingForm';
