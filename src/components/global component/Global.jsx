@@ -20,7 +20,7 @@ const Global= () => {
   };
 
   const handleSearch = () => {
-    navigate ("/HotelPage");
+    navigate ("/HotelList");
    
   };
 

@@ -20,7 +20,7 @@ const SearchForm = () => {
   };
 
   const handleSearch = () => {
-    navigate ("/HotelPage");
+    navigate ("/HotelList");
   };
 
   return (

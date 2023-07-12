@@ -16,7 +16,6 @@ const App = () => {
       <Routes>
           <Route exact path="" element ={<SearchForm/>}/>
           <Route exact path='/HotelList' element ={<HotelList/>} />
-          <Route exact path='/HotelPage' element ={<HotelPage/>} />
           <Route exact path='/Booked' element ={<Booked/>} />
           <Route exact path="/Product/:id" element ={<ProductDetail/>} />
           <Route exact path="/BookingForm" element ={<BookingForm/>} />
